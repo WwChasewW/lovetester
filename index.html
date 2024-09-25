@@ -1,0 +1,155 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Ultimate Love Tester | Find Your Match</title>
+      <link rel="stylesheet" href="main.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+      <style>
+          @media (max-width: 768px) {
+              .container {
+                  width: 90%;
+                  margin: 0 auto;
+              }
+              h1 {
+                  font-size: 1.8rem;
+              }
+              .subtitle {
+                  font-size: 1rem;
+              }
+              .love-tester {
+                  flex-direction: column;
+              }
+              input[type="text"] {  
+                  width: 100%;
+                  margin: 10px 0;
+              }
+              .heart {
+                  margin: 10px 0;
+              }
+              #percentage {
+                  font-size: 3rem;
+              }
+              #resultText {
+                  font-size: 1rem;
+              }
+              #testLove {
+                  width: 100%;
+              }
+              #loveQuote {
+                  font-size: 0.9rem;
+              }
+          }
+      </style>
+  </head>
+  <body>
+      <div id="particles-js"></div>
+      <div class="container animate__animated animate__fadeIn">
+          <header>
+              <h1 class="animate__animated animate__heartBeat animate__infinite">Ultimate Love Tester</h1>
+              <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Discover the strength of your connection</p>
+          </header>
+          <main>
+              <div class="love-tester">
+                  <input type="text" id="name1" placeholder="Enter your name" class="animate__animated animate__bounceInLeft">
+                  <div class="heart animate__animated animate__pulse animate__infinite">❤️</div>
+                  <input type="text" id="name2" placeholder="Enter your partner's name" class="animate__animated animate__bounceInRight">
+              </div>
+              <div class="result">
+                  <span id="percentage" class="animate__animated animate__zoomIn">0%</span>
+                  <p id="resultText" class="animate__animated animate__fadeIn animate__delay-1s"></p>
+              </div>
+              <button id="testLove" class="animate__animated animate__rubberBand">Test Your Love</button>
+              <div id="loveQuote" class="animate__animated animate__fadeIn"></div>
+          </main>
+          <footer>
+              <p>Remember, true love is about more than just numbers!</p>
+          </footer>
+      </div>
+      <script src="main.js"></script>
+      <script>
+          particlesJS('particles-js', {
+              particles: {
+                  number: { value: 80, density: { enable: true, value_area: 800 } },
+                  color: { value: "#ff69b4" },
+                  shape: { type: "heart", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 } },
+                  opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                  size: { value: 5, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                  line_linked: { enable: true, distance: 150, color: "#ff69b4", opacity: 0.4, width: 1 },
+                  move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+              },
+              interactivity: {
+                  detect_on: "canvas",
+                  events: {
+                      onhover: { enable: true, mode: "repulse" },
+                      onclick: { enable: true, mode: "push" },
+                      resize: true
+                  },
+                  modes: {
+                      grab: { distance: 400, line_linked: { opacity: 1 } },
+                      bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                      repulse: { distance: 200, duration: 0.4 },
+                      push: { particles_nb: 4 },
+                      remove: { particles_nb: 2 }
+                  }
+              },
+              retina_detect: true
+          });
+
+          function animatePercentage(finalPercentage) {
+              let currentPercentage = 0;
+              const duration = 3000;
+              const interval = 50;
+              const steps = duration / interval;
+              const increment = finalPercentage / steps;
+
+              const animation = setInterval(() => {
+                  currentPercentage += increment;
+                  if (currentPercentage >= finalPercentage) {
+                      currentPercentage = finalPercentage;
+                      clearInterval(animation);
+                  }
+                  document.getElementById('percentage').textContent = Math.round(currentPercentage) + '%';
+              }, interval);
+          }
+
+          function getResultText(percentage) {
+              if (percentage < 20) return "Hmm, maybe you're better off as friends?";
+              if (percentage < 40) return "There's potential, but it might need some work!";
+              if (percentage < 60) return "Not bad! You've got a good foundation.";
+              if (percentage < 80) return "Wow, you two have a strong connection!";
+              return "Incredible! You might just be soulmates!";
+          }
+
+          document.getElementById('testLove').addEventListener('click', function() {
+              const name1 = document.getElementById('name1').value;
+              const name2 = document.getElementById('name2').value;
+              if (name1 && name2) {
+                  const lovePercentage = Math.floor(Math.random() * 101);
+                  animatePercentage(lovePercentage);
+                  document.getElementById('resultText').textContent = getResultText(lovePercentage);
+                  document.getElementById('resultText').style.display = 'block';
+            
+                  // Add a love quote
+
+                 
+              } else {
+                  alert('Please enter both names!');
+              }
+          });
+      </script>
+          <div class="ad-container">
+            <div class="ad-content">
+                <div class="smalltext">ad</div>
+                <h2>Solar Fire Studios</h2>
+                <p>We at Solar Fire Studios make apps and websites.</p>
+                <a href="https://solarfirestudios.netlify.app/" class="ad-button">Visit Us</a>
+            </div>
+        </div>
+        
+        
+  </body>
+  </html>
